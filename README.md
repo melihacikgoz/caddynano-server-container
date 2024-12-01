@@ -42,3 +42,17 @@ By transitioning from Server Core to Nano Server, projects benefit from reduced 
 
 Notes: 
 	1. The files inside src/* can be JavaScript files and may include frameworks or libraries such as React, Angular, Vue, etc.
+
+** How To Run? **
+ First Step: docker build -t caddynano-server .
+ Second Step: docker run -d -p 80:80 -p 443:443 caddynano-server
+
+## Accessing the Application
+
+Once the container is running, open your browser and navigate to:
+
+- [http://localhost:80](http://localhost:80)
+- [https://localhost](https://localhost)
+
+## If HTTPS is required, a certificate must be installed. OpenSSL is supported for generating and managing certificates.
+These URLs will point to the application running inside the Docker container.
