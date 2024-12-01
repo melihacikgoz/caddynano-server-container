@@ -48,3 +48,23 @@ Nano Server ve Caddy Server kombinasyonu, Docker konteyner projeleri için önem
 	2.	Caddy Server’ın HTTPS sertifikalarını otomatik yönetebilmesi için gerekli dış erişim izinlerini sağlayın.
 
 Bu geçiş sayesinde, hem depolama alanından tasarruf sağlanır hem de uygulamanın bakım maliyetleri düşürülür.
+
+## Nasıl Çalıştırılır?
+
+Birinci Adım:
+
+docker build -t caddynano-server .
+
+İkinci Adım:
+
+docker run -d -p 80:80 -p 443:443 caddynano-server
+
+## Uygulamaya Erişim
+
+Konteyner çalıştırıldıktan sonra tarayıcınızı açın ve aşağıdaki adreslere gidin:
+	•	http://localhost:80
+	•	https://localhost
+
+Eğer HTTPS gerekiyorsa, mutlaka bir sertifika yüklenmelidir. Sertifika oluşturmak ve yönetmek için OpenSSL desteklenmektedir.
+
+Bu URL’ler, Docker konteyneri içinde çalışan uygulamaya yönlendirecektir.
