@@ -25,4 +25,4 @@ COPY docs/caddyfile.template C:\caddy\Caddyfile
 EXPOSE 80 443
 
 WORKDIR C:\caddy
-RUN /caddy.exe run --config /Caddyfile
+CMD ["/caddy.exe", "run", "--config", "/Caddyfile"]
