@@ -38,3 +38,7 @@ Using Nano Server with Caddy Server is a strategic choice for containerized appl
 	3.	Enhanced performance through minimal dependencies.
 
 By transitioning from Server Core to Nano Server, projects benefit from reduced image size, faster deployment, and improved overall efficiency.
+
+
+Notes: 
+	1. The files inside src/* can be JavaScript files and may include frameworks or libraries such as React, Angular, Vue, etc.
