@@ -45,6 +45,7 @@ Notes:
 
 ## How To Run?
  First Step: docker build -t caddynano-server .
+ 
  Second Step: docker run -d -p 80:80 -p 443:443 caddynano-server
 
 ## Accessing the Application
