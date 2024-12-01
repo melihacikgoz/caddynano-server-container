@@ -1,0 +1,77 @@
+{
+    auto_https off
+	  #debug #alternative
+}
+# HTTP 
+:80 {
+    encode gzip
+    # API Proxy
+    handle_path /api/* {
+        rewrite * /api{path}
+        reverse_proxy http://${HOST}:5143 {
+            header_up Host {host}
+            header_up X-Real-IP {remote}
+            header_up X-Forwarded-For {remote}
+			      header_up X-Forwarded-Port {server_port}
+            header_up X-Forwarded-Proto {scheme}
+        }
+    }
+    # WebSocket Proxy
+    handle_path /socket/* {
+        rewrite * /socket/
+        reverse_proxy http://${HOST}:5143 {
+            header_up Host {host}
+            header_up X-Real-IP {remote}
+            header_up X-Forwarded-For {remote}
+			      header_up X-Forwarded-Port {server_port}
+            header_up X-Forwarded-Proto {scheme}
+            header_up Connection "upgrade"
+            header_up Upgrade websocket
+            header_up Accept-Encoding gzip, deflate
+        }
+    }
+    # Statik File (SPA)
+    root * /caddy/html
+    file_server	
+    route {
+        try_files {path} /index.html
+    }
+}
+# HTTPs 
+:443 {
+    #tls /caddy/certs/x.crt /caddy/certs/x.key
+    encode gzip
+    # API Proxy
+    handle_path /api/* {
+        rewrite * /api{path}
+        reverse_proxy http://${HOST}:5143 {
+            header_up Host {host}
+            header_up X-Real-IP {remote}
+            header_up X-Forwarded-For {remote}
+			      header_up X-Forwarded-Port {server_port}
+            header_up X-Forwarded-Proto {scheme}
+        }
+    }
+ 
+    # WebSocket Proxy
+    handle_path /socket/* {
+        rewrite * /socket/
+        reverse_proxy http://${HOST}:5143 {
+            header_up Host {host}
+            header_up X-Real-IP {remote}
+            header_up X-Forwarded-For {remote}
+			      header_up X-Forwarded-Port {server_port}
+            header_up X-Forwarded-Proto {scheme}
+            header_up Connection "upgrade"
+            header_up Upgrade websocket
+            header_up Accept-Encoding gzip, deflate
+        }
+    }
+
+    # Static File  (SPA)
+    root * /caddy/html
+    file_server	
+    route {
+        try_files {path} /index.html
+    }
+}
