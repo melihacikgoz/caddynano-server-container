@@ -43,7 +43,7 @@ By transitioning from Server Core to Nano Server, projects benefit from reduced 
 Notes: 
 	1. The files inside src/* can be JavaScript files and may include frameworks or libraries such as React, Angular, Vue, etc.
 
-** How To Run? **
+## How To Run?
  First Step: docker build -t caddynano-server .
  Second Step: docker run -d -p 80:80 -p 443:443 caddynano-server
 
